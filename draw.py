@@ -3,9 +3,9 @@ from matrix import *
 
 
 def draw_lines(matrix, screen, color):
-    for i in range(0,len(matrix),2):
+    for i in range(0,len(matrix[0]),2):
         if i != len(matrix)-1:
-            draw_line(matrix[i][0],matrix[i][1],matrix[i+1][0],matrix[i+1][1],screen,color])
+            draw_line(matrix[0][i],matrix[1][i],matrix[0][i+1],matrix[1][i+1],screen,color)
 
 
 def add_edge(matrix, x0, y0, z0, x1, y1, z1):
@@ -14,9 +14,15 @@ def add_edge(matrix, x0, y0, z0, x1, y1, z1):
 
 
 def add_point(matrix, x, y, z=0):
-    temp = [x, y, z, 1.0]
-    matrix.append(temp)
-
+    for i in range( len( matrix ) ):
+        if i == 0:
+            matrix[i].append( x )
+        elif i == 1:
+            matrix[i].append( y )
+        elif i == 2:
+            matrix[i].append( z )
+        else:
+            matrix[i].append( 1 ) 
 
 
 def draw_line( x0, y0, x1, y1, screen, color ):

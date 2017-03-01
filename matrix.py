@@ -27,19 +27,19 @@ def scalar_mult(matrix, s):
 
 #m1 * m2 -> m2
 def matrix_mult(m1, m2):
-    if(len(m1) == len(m2[0])):
-        m3 = new_matrix(len(m1), len(m2[0]))
-        for row in range(len(m1)):
-            for col in range(len(m2[0])):
-                temp = 0
-                for row2 in range(len(m2)):
-                    temp += m1[row][row2] * m2[row2][col]
-                m3[row][col] = temp
+    if(len(m1[0]) == len(m2)):
+        m3 = new_matrix(len(m2[0]), len(m1))
+        for col in range( len( m2[0] ) ):
+            for row in range( len( m2 ) ):
+                sum = 0;
+                for index in range( len( m1[row] ) ):
+                    sum += m1[row][index] * m2[index][col];
+                m3[row][col] = sum
 
-        for i in range(len(m2)):
-            for j in range(len(m1[i])):
-                m2[i][j] = m3[i][j]
-
+    del m2[:]
+    for i in range(len(m3)):
+        m2.append(m3[i])
+        
 
 
 def new_matrix(rows = 4, cols = 4):
